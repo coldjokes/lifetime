@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.lifetime.db.mapper.AxisMapper">
+	<resultMap id="Axis" type="me.lifetime.entity.Axis">
+		<id column="axis_id" property="axisId" jdbcType="INTEGER" />
+		<result column="time" property="time" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<insert id="insert"  useGeneratedKeys="true" keyProperty="axisId" parameterType="me.lifetime.entity.Axis">
+		insert into axis(time) values(#{time})
+	</insert>
+
+	<select id="getById" resultType="Axis">
+		select * from axis where axis_id = #{0}
+	</select>
+</mapper>

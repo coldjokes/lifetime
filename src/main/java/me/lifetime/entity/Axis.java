@@ -8,6 +8,10 @@ public class Axis {
 	
 	private Date time;
 
+	public Axis(){
+		this.time = new Date();
+	}
+	
 	public int getAxisId() {
 		return axisId;
 	}

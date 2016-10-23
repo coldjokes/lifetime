@@ -8,11 +8,11 @@
 	<name>lifetime Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<finalName>lifetime</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
+				<version>2.5.1</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
