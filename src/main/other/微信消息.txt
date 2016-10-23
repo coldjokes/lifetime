@@ -1,0 +1,20 @@
+文字
+{MsgId=6342459630405224526, FromUserName=ov8gGw4MYA5zFWJhPjv-yKhV4ACQ, CreateTime=1476718958, Content=。。, ToUserName=gh_e1eb406a90ed, MsgType=text}
+
+图片
+{MsgId=6342458311850264615, FromUserName=ov8gGw4MYA5zFWJhPjv-yKhV4ACQ, CreateTime=1476718651, MediaId=3wnocy_r3O3NYKiJHpl7e-ZswO2DrUV6UEKR_KNOxkCG11UhcYb0t6OC6UihZ4bT, PicUrl=http://mmbiz.qpic.cn/mmbiz_jpg/Daf2QSTEQpLXR7iaBN1OJvyQOhHUzwMSauKNgPaULXeJlMZF55003I0ozY5QvR4jld5ZUXIic63ZImOq4wic4ibSDw/0, ToUserName=gh_e1eb406a90ed, MsgType=image}
+
+位置
+{MsgId=6342458466469087275, FromUserName=ov8gGw4MYA5zFWJhPjv-yKhV4ACQ, CreateTime=1476718687, Label=苏州市吴中区斜塘老街荷韵新村(南区)内(敦煌路南), Scale=15, Location_X=31.294789, ToUserName=gh_e1eb406a90ed, Location_Y=120.730361, MsgType=location}
+
+小视频
+{MsgId=6342458676922484786, FromUserName=ov8gGw4MYA5zFWJhPjv-yKhV4ACQ, ThumbMediaId=AqEzupF7BXnejiUnm2BaqDkL32RYeLd10LWc6Ve8JDDt9qj9J9PZ4Baf1WSO1tkO, CreateTime=1476718736, MediaId=4xqlQCLDOVldRD-q1Eu6JcZUh10BSmx1GOVxmGDs0k4sVbM0xg8hnjSkLXjcpkPz, ToUserName=gh_e1eb406a90ed, MsgType=shortvideo}
+
+语音
+{MsgId=6342459106419214400, Format=amr, FromUserName=ov8gGw4MYA5zFWJhPjv-yKhV4ACQ, Recognition=, CreateTime=1476718836, MediaId=q0Km5Kkb_cslTaOtF_awjw4NYK82Rn_oezt5EzAYkMBLYRwIFrUGkIgBgpboBx-_, ToUserName=gh_e1eb406a90ed, MsgType=voice}
+
+名片
+{MsgId=6342459205203462213, FromUserName=ov8gGw4MYA5zFWJhPjv-yKhV4ACQ, CreateTime=1476718859, Content=【收到不支持的消息类型，暂无法显示】, ToUserName=gh_e1eb406a90ed, MsgType=text}
+
+链接、收藏
+{MsgId=6342459269627971654, Description=一、硬件准备（1）、树莓派Pi2（2）、8G 10速Micro SD卡（3）、LCD显示器（如果是VGA接口, FromUserName=ov8gGw4MYA5zFWJhPjv-yKhV4ACQ, Url=http://mp.weixin.qq.com/s?__biz=MzA3MzM3MzE2OQ==&mid=402385551&idx=1&sn=cac4a0360ba5c2e8cbb64397495cbbac&scene=24&srcid=0830xEETR3Nl85pnUrunBPgz#rd, CreateTime=1476718874, Title=树莓派Pi2安装Window10系统安装, ToUserName=gh_e1eb406a90ed, MsgType=link}
