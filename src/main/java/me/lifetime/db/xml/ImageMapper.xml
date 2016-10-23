@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.lifetime.db.mapper.ImageMapper">
+	<resultMap id="Image" type="me.lifetime.entity.Image">
+		<id column="image_id" property="photoId" jdbcType="INTEGER" />
+		<result column="axis_id" property="axisId" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="path" property="path" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<insert id="insert" parameterType="Image">
+		insert into image(axis_id, name, description, path, create_time) values(#{axisId}, #{name}, #{description}, #{path}, #{createTime})
+	</insert>
+</mapper>

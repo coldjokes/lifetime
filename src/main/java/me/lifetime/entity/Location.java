@@ -1,5 +1,6 @@
 package me.lifetime.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Location {
@@ -10,9 +11,11 @@ public class Location {
 	
 	private String name;
 	
-	private double lontitude;
+	private BigDecimal lontitude;
 	
-	private double latitude;
+	private BigDecimal latitude;
+	
+	private int scale;
 	
 	private double height;
 
@@ -42,20 +45,29 @@ public class Location {
 		this.name = name;
 	}
 
-	public double getLontitude() {
+
+	public BigDecimal getLontitude() {
 		return lontitude;
 	}
 
-	public void setLontitude(double lontitude) {
+	public void setLontitude(BigDecimal lontitude) {
 		this.lontitude = lontitude;
 	}
 
-	public double getLatitude() {
+	public BigDecimal getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(BigDecimal latitude) {
 		this.latitude = latitude;
+	}
+
+	public int getScale() {
+		return scale;
+	}
+
+	public void setScale(int scale) {
+		this.scale = scale;
 	}
 
 	public double getHeight() {

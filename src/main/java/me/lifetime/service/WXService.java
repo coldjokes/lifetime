@@ -1,9 +1,11 @@
 package me.lifetime.service;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Map;
 
 import me.lifetime.common.AppConsts;
+import me.lifetime.entity.Location;
 import me.lifetime.util.MessageUtil;
 import me.lifetime.util.SHA1;
 
@@ -22,6 +24,10 @@ public class WXService {
 	private AxisService axisSvc;
 	@Autowired
 	private EventService eventSvc;
+	@Autowired
+	private ImageService imageSvc;
+	@Autowired
+	private LocationService locationSvc;
 	/**
 	 * chat 用户消息交互
 	 * @param map
@@ -34,7 +40,11 @@ public class WXService {
 		String fromUserName = map.get(AppConsts.KEY_FROM_USER_NAME);
 		String content = map.get(AppConsts.KEY_CONTENT);
 		String eventType = map.get(AppConsts.KEY_EVENT);
-		
+		String mediaId = map.get(AppConsts.KEY_MEDIA_ID);
+		String label = map.get(AppConsts.KEY_LABEL);
+		String scale = map.get(AppConsts.KEY_SCALE);
+		String locationX = map.get(AppConsts.KEY_LOCATION_X);
+		String locationY = map.get(AppConsts.KEY_LOCATION_Y);
 		
 		String returnMsg = null;
 
@@ -59,7 +69,6 @@ public class WXService {
 					axisId = axisSvc.insertAndGetId();
 				}
 				
-				
 				if(AppConsts.MESSAGE_TYPE_TEXT.equals(msgType)){//文本事件
 					
 					eventSvc.insert(axisId, content);
@@ -67,9 +76,17 @@ public class WXService {
 //					returnMsg = "<a href='http://booscup.eicp.net/lifetime/end'>END</a>";
 					returnMsg = AppConsts.MSG_SUCCESS_TEXT;
 				}else if(AppConsts.MESSAGE_TYPE_IMAGE.equals(msgType)){
-					returnMsg = "图片";
+					imageSvc.insert(axisId, mediaId);
+					returnMsg = AppConsts.MSG_SUCCESS_IMAGE;
 				}else if(AppConsts.MESSAGE_TYPE_LOCATION.equals(msgType)){
-					returnMsg = "位置";
+					Location location = new Location();
+					location.setAxisId(axisId);
+					location.setName(label);
+					location.setLontitude(new BigDecimal(locationX));
+					location.setLatitude(new BigDecimal(locationY));
+					location.setScale(Integer.valueOf(scale));
+					locationSvc.insert(location);
+					returnMsg = AppConsts.MSG_SUCCESS_LOCATION;
 				}else if(AppConsts.MESSAGE_TYPE_SHORT_VIDEO.equals(msgType)){
 					returnMsg = "小视频";
 				}else if(AppConsts.MESSAGE_TYPE_VOICE.equals(msgType)){

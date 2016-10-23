@@ -2,9 +2,9 @@ package me.lifetime.entity;
 
 import java.util.Date;
 
-public class Photo {
+public class Image {
 
-	private int photoId;
+	private int imageId;
 	
 	private int axisId;
 	
@@ -16,12 +16,17 @@ public class Photo {
 	
 	private Date createTime;
 
-	public int getPhotoId() {
-		return photoId;
+	public Image(){
+		this.createTime = new Date();
+	};
+	
+
+	public int getImageId() {
+		return imageId;
 	}
 
-	public void setPhotoId(int photoId) {
-		this.photoId = photoId;
+	public void setImageId(int imageId) {
+		this.imageId = imageId;
 	}
 
 	public int getAxisId() {

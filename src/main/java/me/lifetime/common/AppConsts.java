@@ -36,6 +36,8 @@ public class AppConsts {
 	
 	public static final String MSG_SUCCESS	 					= Messages.get("message.success");
 	public static final String MSG_SUCCESS_TEXT	 				= Messages.get("message.success.text");
+	public static final String MSG_SUCCESS_IMAGE	 			= Messages.get("message.success.image");
+	public static final String MSG_SUCCESS_LOCATION	 			= Messages.get("message.success.location");
 }
 
 
