@@ -4,13 +4,23 @@
 	<resultMap id="Axis" type="me.lifetime.entity.Axis">
 		<id column="axis_id" property="axisId" jdbcType="INTEGER" />
 		<result column="time" property="time" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
 	</resultMap>
 
-	<insert id="insert"  useGeneratedKeys="true" keyProperty="axisId" parameterType="me.lifetime.entity.Axis">
-		insert into axis(time) values(#{time})
+	<insert id="insert"  useGeneratedKeys="true" keyProperty="axisId" parameterType="Axis">
+		insert into axis(time,status) values(#{time},#{status})
 	</insert>
 
 	<select id="getById" resultType="Axis">
 		select * from axis where axis_id = #{0}
 	</select>
+	<select id="getLastId" resultType="int">
+		select axis_id from axis order by axis_id desc limit 1
+	</select>
+	<select id="getLastStatus" resultType="int">
+		select status from axis order by axis_id desc limit 1
+	</select>
+	<update id="updateLastStatus" >
+		update axis set status = 0 order by axis_id desc limit 1
+	</update>
 </mapper>

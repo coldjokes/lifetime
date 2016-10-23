@@ -25,6 +25,20 @@ public class WXController {
 	@Autowired
 	private WXService wxSvc;
 
+	
+	@RequestMapping(value="/wx",method = {RequestMethod.POST})
+	@ResponseBody
+	public String clientMsg(HttpServletRequest req){
+		Map<String, String> map = null;
+		try {
+			map = MessageUtil.xmlToMap(req);
+		} catch (IOException | DocumentException e) {
+			log.error("Failed to get client message", e);
+		}
+		
+		return wxSvc.handleMsg(map);
+	}
+	
 	@RequestMapping(value="/wx",method = {RequestMethod.GET})
 	@ResponseBody
 	public String accessToken(HttpServletRequest req){
@@ -39,17 +53,10 @@ public class WXController {
 		}
 		return "";
 	}
+
 	
-	@RequestMapping(value="/wx",method = {RequestMethod.POST})
-	@ResponseBody
-	public String clientMsg(HttpServletRequest req){
-		Map<String, String> map = null;
-		try {
-			map = MessageUtil.xmlToMap(req);
-		} catch (IOException | DocumentException e) {
-			log.error("Failed to get client message", e);
-		}
-		
-		return wxSvc.handleMsg(map);
+	@RequestMapping(value="/end",method = {RequestMethod.GET})
+	public void end(HttpServletRequest req){
+		System.out.println(11111);
 	}
 }

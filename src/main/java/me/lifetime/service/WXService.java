@@ -20,6 +20,69 @@ public class WXService {
 	
 	@Autowired
 	private AxisService axisSvc;
+	@Autowired
+	private EventService eventSvc;
+	/**
+	 * chat 用户消息交互
+	 * @param map
+	 * @return
+	 */
+	public String handleMsg(Map<String, String> map){
+		String msgType = map.get(AppConsts.KEY_MSG_TYPE);
+		
+		String toUserName = map.get(AppConsts.KEY_TO_USER_NAME);
+		String fromUserName = map.get(AppConsts.KEY_FROM_USER_NAME);
+		String content = map.get(AppConsts.KEY_CONTENT);
+		String eventType = map.get(AppConsts.KEY_EVENT);
+		
+		
+		String returnMsg = null;
+
+		if("0".equals(content)){
+			axisSvc.updateLastStatus();
+			returnMsg = AppConsts.MSG_SUCCESS;
+		}else{
+			if(AppConsts.MESSAGE_TYPE_EVENT.equals(msgType)){		//订阅、取消订阅事件
+				if(AppConsts.MESSAGE_TYPE_SUBSCRIBE.equals(eventType)){
+					
+				}else if(AppConsts.MESSAGE_TYPE_UNSUBSCRIBE.equals(eventType)){
+					
+				}
+			}else {
+				
+				int axisId = 0;
+				int status = axisSvc.getLastStatus();
+				
+				if(status == 1){//还在更新中
+					axisId = axisSvc.getLastId();
+				}else{
+					axisId = axisSvc.insertAndGetId();
+				}
+				
+				
+				if(AppConsts.MESSAGE_TYPE_TEXT.equals(msgType)){//文本事件
+					
+					eventSvc.insert(axisId, content);
+					
+//					returnMsg = "<a href='http://booscup.eicp.net/lifetime/end'>END</a>";
+					returnMsg = AppConsts.MSG_SUCCESS_TEXT;
+				}else if(AppConsts.MESSAGE_TYPE_IMAGE.equals(msgType)){
+					returnMsg = "图片";
+				}else if(AppConsts.MESSAGE_TYPE_LOCATION.equals(msgType)){
+					returnMsg = "位置";
+				}else if(AppConsts.MESSAGE_TYPE_SHORT_VIDEO.equals(msgType)){
+					returnMsg = "小视频";
+				}else if(AppConsts.MESSAGE_TYPE_VOICE.equals(msgType)){
+					returnMsg = "语音";
+				}
+			}
+		}
+		
+
+		return MessageUtil.initText(toUserName, fromUserName, returnMsg);
+	}
+	
+	
 	
 	/**
 	 * 验证token
@@ -43,52 +106,4 @@ public class WXService {
 		return temp.equals(signature);
 	}
 	
-	/**
-	 * chat 用户消息交互
-	 * @param map
-	 * @return
-	 */
-	public String handleMsg(Map<String, String> map){
-		String msgType = map.get(AppConsts.KEY_MSG_TYPE);
-		
-		String toUserName = map.get(AppConsts.KEY_TO_USER_NAME);
-		String fromUserName = map.get(AppConsts.KEY_FROM_USER_NAME);
-		String content = map.get(AppConsts.KEY_CONTENT);
-		String eventType = map.get(AppConsts.KEY_EVENT);
-		
-		
-		System.out.println("===========");
-		System.out.println(msgType);
-		System.out.println(content);
-		
-		String returnMsg = MessageUtil.menuText();
-
-		System.out.println("RETURN ==="+axisSvc.insertAndGetId());
-		
-		
-		if(AppConsts.MESSAGE_TYPE_EVENT.equals(msgType)){		//订阅、取消订阅事件
-			
-			if(AppConsts.MESSAGE_TYPE_SUBSCRIBE.equals(eventType)){
-				
-			}else if(AppConsts.MESSAGE_TYPE_UNSUBSCRIBE.equals(eventType)){
-				
-			}
-		}else if(AppConsts.MESSAGE_TYPE_TEXT.equals(msgType)){//文本事件
-	
-			
-			
-			
-			returnMsg = "文本";
-		}else if(AppConsts.MESSAGE_TYPE_IMAGE.equals(msgType)){
-			returnMsg = "图片";
-		}else if(AppConsts.MESSAGE_TYPE_LOCATION.equals(msgType)){
-			returnMsg = "位置";
-		}else if(AppConsts.MESSAGE_TYPE_SHORT_VIDEO.equals(msgType)){
-			returnMsg = "小视频";
-		}else if(AppConsts.MESSAGE_TYPE_VOICE.equals(msgType)){
-			returnMsg = "语音";
-		}
-		return MessageUtil.initText(toUserName, fromUserName, returnMsg);
-	}
-
 }

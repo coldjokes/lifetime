@@ -20,4 +20,16 @@ public class AxisService {
 		
 	}
 	
+	public int getLastId(){
+		return axisMapper.getLastId();
+	}
+	
+	public int getLastStatus(){
+		return axisMapper.getLastStatus();
+	}
+	
+	public int updateLastStatus(){
+		return axisMapper.updateLastStatus();
+	}
+	
 }

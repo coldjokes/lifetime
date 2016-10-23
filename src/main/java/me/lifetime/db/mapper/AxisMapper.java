@@ -7,4 +7,10 @@ public interface AxisMapper {
     int insert(Axis axis);
 
     Axis getById(int axisId);
+    
+    int getLastId();
+    
+    int getLastStatus();
+    
+    int updateLastStatus();
 }

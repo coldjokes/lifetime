@@ -12,6 +12,14 @@ public class Event {
 	
 	private Date createTime;
 
+	public Event(){};
+	
+	public Event(int axisId, String text){
+		this.axisId = axisId;
+		this.text = text;
+		this.createTime = new Date();
+	}
+	
 	public int getEventId() {
 		return eventId;
 	}
