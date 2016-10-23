@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.lifetime.db.mapper.EventMapper">
+	<resultMap id="Event" type="me.lifetime.entity.Event">
+		<id column="event_id" property="eventId" jdbcType="INTEGER" />
+		<result column="axis_id" property="axisId" jdbcType="INTEGER" />
+		<result column="text" property="text" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<insert id="insert" parameterType="Event">
+		insert into event(axis_id, text, create_time) values(#{axisId}, #{text}, #{createTime})
+	</insert>
+</mapper>
