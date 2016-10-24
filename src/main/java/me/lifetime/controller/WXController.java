@@ -54,9 +54,4 @@ public class WXController {
 		return "";
 	}
 
-	
-	@RequestMapping(value="/end",method = {RequestMethod.GET})
-	public void end(HttpServletRequest req){
-		System.out.println(11111);
-	}
 }
