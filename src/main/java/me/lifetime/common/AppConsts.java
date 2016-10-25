@@ -40,6 +40,11 @@ public class AppConsts {
 	public static final String MSG_SUCCESS_IMAGE	 			= Messages.get("message.success.image");
 	public static final String MSG_SUCCESS_IMAGE_DETAILS		= Messages.get("message.success.image.details");
 	public static final String MSG_SUCCESS_LOCATION	 			= Messages.get("message.success.location");
+	
+	
+	
+	public static final String MSG_SUCCESS_SUBSCRIBE 			= Messages.get("message.success.subscribe");
+	public static final String MSG_SUCCESS_SUBSCRIBE_AG			= Messages.get("message.success.subscribe.ag");
 }
 
 

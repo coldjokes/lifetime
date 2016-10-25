@@ -9,6 +9,8 @@ public class Axis {
 	
 	private Date time;
 
+	private String fromUserName;
+	
 	private String label;
 //	经度---lon---y轴
 	private BigDecimal lontitude;
@@ -21,10 +23,7 @@ public class Axis {
 	
 	private int status;//0 表示结束，1表示还未结束
 	
-	public Axis(){
-		this.time = new Date();
-		this.status = 1;
-	}
+	public Axis(){}
 	
 	public int getAxisId() {
 		return axisId;
@@ -40,6 +39,14 @@ public class Axis {
 
 	public void setTime(Date time) {
 		this.time = time;
+	}
+
+	public String getFromUserName() {
+		return fromUserName;
+	}
+
+	public void setFromUserName(String fromUserName) {
+		this.fromUserName = fromUserName;
 	}
 
 	public int getStatus() {

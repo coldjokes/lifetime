@@ -3,11 +3,12 @@ package me.lifetime.service;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Date;
 import java.util.Map;
 
 import me.lifetime.common.AppConsts;
 import me.lifetime.entity.Axis;
+import me.lifetime.entity.User;
 import me.lifetime.util.MessageUtil;
 import me.lifetime.util.SHA1;
 
@@ -22,6 +23,8 @@ public class WXService {
 	
 	private static final String TOKEN = "thisisatoken";
 	
+	@Autowired
+	private UserService userSvc;
 	@Autowired
 	private AxisService axisSvc;
 	@Autowired
@@ -48,12 +51,12 @@ public class WXService {
 		
 		String returnMsg = null;
 
-		if("0".equals(content)){
+		if("0".equals(content)){//表明结束该时间点记录
 			
 			//将最后axis标识为结束
-			axisSvc.updateLastStatus();
+			axisSvc.updateLastStatus(fromUserName);
 			
-			Axis axis = axisSvc.getLastAxis();
+			Axis axis = axisSvc.getLastAxis(fromUserName);
 			if(axis != null){
 				StringBuffer sb = new StringBuffer();
 				sb.append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(axis.getTime()))
@@ -67,19 +70,34 @@ public class WXService {
 		}else{
 			if(AppConsts.MESSAGE_TYPE_EVENT.equals(msgType)){		//订阅、取消订阅事件
 				if(AppConsts.MESSAGE_TYPE_SUBSCRIBE.equals(eventType)){
+					User user = userSvc.getUser(fromUserName);
+					if(user != null){
+						user.setSubscribeTime(new Date());
+						user.setUnsubscribeTime(null);
+						userSvc.update(user);
+						returnMsg = AppConsts.MSG_SUCCESS_SUBSCRIBE_AG;
+					}else{
+						user = new User();
+						user.setFromUserName(fromUserName);
+						user.setSubscribeTime(new Date());
+						userSvc.insert(user);
+						returnMsg = AppConsts.MSG_SUCCESS_SUBSCRIBE;	
+					}
 					
 				}else if(AppConsts.MESSAGE_TYPE_UNSUBSCRIBE.equals(eventType)){
-					
+					User user = userSvc.getUser(fromUserName);
+					user.setUnsubscribeTime(new Date());
+					userSvc.update(user);
 				}
 			}else {
 				
 				int axisId = 0;
-				Axis axis = axisSvc.getLastAxis();
+				Axis axis = axisSvc.getLastAxis(fromUserName);
 				
 				if(axis != null && axis.getStatus() == 1){//还在更新中
 					axisId = axis.getAxisId();
 				}else{
-					axisId = axisSvc.insertAndGetId();
+					axisId = axisSvc.insertAndGetId(fromUserName);
 				}
 				
 				if(AppConsts.MESSAGE_TYPE_TEXT.equals(msgType)){//文本事件
@@ -97,7 +115,7 @@ public class WXService {
 					axis.setScale(Integer.valueOf(scale));
 					axisSvc.updateAxis(axis);
 					returnMsg = AppConsts.MSG_SUCCESS_LOCATION;
-					
+
 				}else if(AppConsts.MESSAGE_TYPE_SHORT_VIDEO.equals(msgType)){
 					returnMsg = "小视频";
 				}else if(AppConsts.MESSAGE_TYPE_VOICE.equals(msgType)){

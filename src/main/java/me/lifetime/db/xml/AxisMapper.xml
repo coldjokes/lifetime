@@ -4,6 +4,7 @@
 	<resultMap id="Axis" type="me.lifetime.entity.Axis">
 		<id column="axis_id" property="axisId" jdbcType="INTEGER" />
 		<result column="time" property="time" jdbcType="TIMESTAMP" />
+		<result column="from_user_name" property="fromUserName" jdbcType="VARCHAR" />
 		<result column="label" property="label" jdbcType="VARCHAR" />
 		<result column="lontitude" property="lontitude" jdbcType="DECIMAL" />
 		<result column="latitude" property="latitude" jdbcType="DECIMAL" />
@@ -13,12 +14,30 @@
 	</resultMap>
 
 	<sql id="Base_Column_List" >
-		axis_id, time, label, lontitude, latitude, scale, height, status
+		axis_id, time, from_user_name, label, lontitude, latitude, scale, height, status
 	</sql>
 
 
 	<insert id="insert"  useGeneratedKeys="true" keyProperty="axisId" parameterType="Axis">
-		insert into axis(time,label,lontitude,latitude,scale,height,status) values(#{time},#{label},#{lontitude},#{latitude},#{scale},#{height},#{status})
+		insert into axis(
+			time
+			,from_user_name
+			,label
+			,lontitude
+			,latitude
+			,scale
+			,height
+			,status
+		) values(
+			#{time}
+			, #{fromUserName}
+			, #{label}
+			,#{lontitude}
+			,#{latitude}
+			,#{scale}
+			,#{height}
+			,#{status}
+		)
 	</insert>
 
 	<select id="getById" resultMap="Axis">
@@ -29,8 +48,8 @@
 		select axis_id from axis order by axis_id desc limit 1
 	</select>
 	
-	<select id="getLastAxis" resultMap="Axis">
-		select * from axis order by axis_id desc limit 1
+	<select id="getLastAxis" resultMap="Axis" parameterType="java.lang.String">
+		select * from axis where from_user_name=#{0} order by axis_id desc limit 1
 	</select>
 	
 	<update id="updateAxis" parameterType="Axis">
@@ -42,11 +61,7 @@
 			where axis_id = #{axisId}
 	</update>
 	
-	<select id="getLastStatus" resultType="int">
-		select status from axis order by axis_id desc limit 1
-	</select>
-	
-	<update id="updateLastStatus" >
-		update axis set status = 0 order by axis_id desc limit 1
+	<update id="updateLastStatus" parameterType="java.lang.String">
+		update axis set status = 0 from_user_name=#{0} order by axis_id desc limit 1
 	</update>
 </mapper>

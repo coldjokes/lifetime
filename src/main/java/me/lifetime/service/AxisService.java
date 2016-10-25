@@ -1,6 +1,6 @@
 package me.lifetime.service;
 
-import java.util.List;
+import java.util.Date;
 
 import me.lifetime.db.mapper.AxisMapper;
 import me.lifetime.entity.Axis;
@@ -15,8 +15,11 @@ public class AxisService {
 	@Autowired
 	private AxisMapper axisMapper;
 	
-	public int insertAndGetId(){
+	public int insertAndGetId(String fromUserName){
 		Axis axis = new Axis();
+		axis.setTime(new Date());
+		axis.setFromUserName(fromUserName);
+		axis.setStatus(1);
 		axisMapper.insert(axis);
 		return axis.getAxisId();
 		
@@ -28,20 +31,16 @@ public class AxisService {
 	public int getLastId(){
 		return axisMapper.getLastId();
 	}
-	public Axis getLastAxis(){
-		return axisMapper.getLastAxis();
+	public Axis getLastAxis(String fromUserName){
+		return axisMapper.getLastAxis(fromUserName);
 	}
 
 	public int updateAxis(Axis axis){
 		return axisMapper.updateAxis(axis);
 	}
 	
-	public int getLastStatus(){
-		return axisMapper.getLastStatus();
-	}
-	
-	public int updateLastStatus(){
-		return axisMapper.updateLastStatus();
+	public int updateLastStatus(String fromUserName){
+		return axisMapper.updateLastStatus(fromUserName);
 	}
 	
 }

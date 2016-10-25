@@ -10,11 +10,9 @@ public interface AxisMapper {
     
     int getLastId();
     
-    Axis getLastAxis();
+    Axis getLastAxis(String fromUserName);
     
     int updateAxis(Axis axis);
     
-    int getLastStatus();
-    
-    int updateLastStatus();
+    int updateLastStatus(String fromUserName);
 }

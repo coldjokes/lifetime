@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.lifetime.db.mapper.UserMapper">
+	<resultMap id="User" type="me.lifetime.entity.User">
+		<id column="from_user_name" property="fromUserName" jdbcType="VARCHAR" />
+		<result column="subscribe_time" property="subscribeTime" jdbcType="TIMESTAMP" />
+		<result column="unsubscribe_time" property="unsubscribeTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<insert id="insert" parameterType="User">
+		insert into user values(#{fromUserName}, #{subscribeTime}, #{unsubscribeTime})
+	</insert>
+	
+	<update id="update" parameterType="User">
+		update user set 
+			subscribe_time = #{subscribeTime} 
+			,unsubscribe_time = #{unsubscribeTime} 
+			where from_user_name = #{fromUserName}
+	</update>
+	
+	<select id="getUser" resultMap="User" parameterType="java.lang.String">
+		select * from user where from_user_name = #{0}
+	</select>
+</mapper>
