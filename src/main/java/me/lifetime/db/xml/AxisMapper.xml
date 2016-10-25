@@ -4,22 +4,48 @@
 	<resultMap id="Axis" type="me.lifetime.entity.Axis">
 		<id column="axis_id" property="axisId" jdbcType="INTEGER" />
 		<result column="time" property="time" jdbcType="TIMESTAMP" />
+		<result column="label" property="label" jdbcType="VARCHAR" />
+		<result column="lontitude" property="lontitude" jdbcType="DECIMAL" />
+		<result column="latitude" property="latitude" jdbcType="DECIMAL" />
+		<result column="scale" property="scale" jdbcType="INTEGER" />
+		<result column="height" property="height" jdbcType="DOUBLE" />		
 		<result column="status" property="status" jdbcType="INTEGER" />
 	</resultMap>
 
+	<sql id="Base_Column_List" >
+		axis_id, time, label, lontitude, latitude, scale, height, status
+	</sql>
+
+
 	<insert id="insert"  useGeneratedKeys="true" keyProperty="axisId" parameterType="Axis">
-		insert into axis(time,status) values(#{time},#{status})
+		insert into axis(time,label,lontitude,latitude,scale,height,status) values(#{time},#{label},#{lontitude},#{latitude},#{scale},#{height},#{status})
 	</insert>
 
-	<select id="getById" resultType="Axis">
+	<select id="getById" resultMap="Axis">
 		select * from axis where axis_id = #{0}
 	</select>
+	
 	<select id="getLastId" resultType="int">
 		select axis_id from axis order by axis_id desc limit 1
 	</select>
+	
+	<select id="getLastAxis" resultMap="Axis">
+		select * from axis order by axis_id desc limit 1
+	</select>
+	
+	<update id="updateAxis" parameterType="Axis">
+		update axis set 
+			label = #{label}
+			,lontitude = #{lontitude}
+			,latitude = #{latitude}
+			,scale = #{scale} 
+			where axis_id = #{axisId}
+	</update>
+	
 	<select id="getLastStatus" resultType="int">
 		select status from axis order by axis_id desc limit 1
 	</select>
+	
 	<update id="updateLastStatus" >
 		update axis set status = 0 order by axis_id desc limit 1
 	</update>

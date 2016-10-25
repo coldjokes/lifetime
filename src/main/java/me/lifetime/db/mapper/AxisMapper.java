@@ -10,6 +10,10 @@ public interface AxisMapper {
     
     int getLastId();
     
+    Axis getLastAxis();
+    
+    int updateAxis(Axis axis);
+    
     int getLastStatus();
     
     int updateLastStatus();

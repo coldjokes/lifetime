@@ -34,9 +34,11 @@ public class AppConsts {
 	public static final String KEY_URL							= "Url";
 	public static final String KEY_TITLE						= "Title";
 	
+	public static final String MSG_NO_RECORD	 				= Messages.get("message.no.record");
 	public static final String MSG_SUCCESS	 					= Messages.get("message.success");
 	public static final String MSG_SUCCESS_TEXT	 				= Messages.get("message.success.text");
 	public static final String MSG_SUCCESS_IMAGE	 			= Messages.get("message.success.image");
+	public static final String MSG_SUCCESS_IMAGE_DETAILS		= Messages.get("message.success.image.details");
 	public static final String MSG_SUCCESS_LOCATION	 			= Messages.get("message.success.location");
 }
 

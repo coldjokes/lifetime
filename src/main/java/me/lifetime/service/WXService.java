@@ -1,11 +1,13 @@
 package me.lifetime.service;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import me.lifetime.common.AppConsts;
-import me.lifetime.entity.Location;
+import me.lifetime.entity.Axis;
 import me.lifetime.util.MessageUtil;
 import me.lifetime.util.SHA1;
 
@@ -26,8 +28,6 @@ public class WXService {
 	private EventService eventSvc;
 	@Autowired
 	private ImageService imageSvc;
-	@Autowired
-	private LocationService locationSvc;
 	/**
 	 * chat 用户消息交互
 	 * @param map
@@ -49,8 +49,21 @@ public class WXService {
 		String returnMsg = null;
 
 		if("0".equals(content)){
+			
+			//将最后axis标识为结束
 			axisSvc.updateLastStatus();
-			returnMsg = AppConsts.MSG_SUCCESS;
+			
+			Axis axis = axisSvc.getLastAxis();
+			if(axis != null){
+				StringBuffer sb = new StringBuffer();
+				sb.append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(axis.getTime()))
+				.append("\n")
+				.append(AppConsts.MSG_SUCCESS);
+				returnMsg = sb.toString();
+			}else{
+				returnMsg = AppConsts.MSG_NO_RECORD;
+			}
+			
 		}else{
 			if(AppConsts.MESSAGE_TYPE_EVENT.equals(msgType)){		//订阅、取消订阅事件
 				if(AppConsts.MESSAGE_TYPE_SUBSCRIBE.equals(eventType)){
@@ -61,32 +74,30 @@ public class WXService {
 			}else {
 				
 				int axisId = 0;
-				int status = axisSvc.getLastStatus();
+				Axis axis = axisSvc.getLastAxis();
 				
-				if(status == 1){//还在更新中
-					axisId = axisSvc.getLastId();
+				if(axis != null && axis.getStatus() == 1){//还在更新中
+					axisId = axis.getAxisId();
 				}else{
 					axisId = axisSvc.insertAndGetId();
 				}
 				
 				if(AppConsts.MESSAGE_TYPE_TEXT.equals(msgType)){//文本事件
-					
 					eventSvc.insert(axisId, content);
-					
-//					returnMsg = "<a href='http://booscup.eicp.net/lifetime/end'>END</a>";
 					returnMsg = AppConsts.MSG_SUCCESS_TEXT;
 				}else if(AppConsts.MESSAGE_TYPE_IMAGE.equals(msgType)){
 					imageSvc.insert(axisId, mediaId);
 					returnMsg = AppConsts.MSG_SUCCESS_IMAGE;
 				}else if(AppConsts.MESSAGE_TYPE_LOCATION.equals(msgType)){
-					Location location = new Location();
-					location.setAxisId(axisId);
-					location.setName(label);
-					location.setLontitude(new BigDecimal(locationX));
-					location.setLatitude(new BigDecimal(locationY));
-					location.setScale(Integer.valueOf(scale));
-					locationSvc.insert(location);
+					
+					axis = axisSvc.getById(axisId);
+					axis.setLabel(label);
+					axis.setLontitude(new BigDecimal(locationY));
+					axis.setLatitude(new BigDecimal(locationX));
+					axis.setScale(Integer.valueOf(scale));
+					axisSvc.updateAxis(axis);
 					returnMsg = AppConsts.MSG_SUCCESS_LOCATION;
+					
 				}else if(AppConsts.MESSAGE_TYPE_SHORT_VIDEO.equals(msgType)){
 					returnMsg = "小视频";
 				}else if(AppConsts.MESSAGE_TYPE_VOICE.equals(msgType)){

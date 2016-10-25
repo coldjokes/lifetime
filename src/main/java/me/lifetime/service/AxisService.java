@@ -1,5 +1,7 @@
 package me.lifetime.service;
 
+import java.util.List;
+
 import me.lifetime.db.mapper.AxisMapper;
 import me.lifetime.entity.Axis;
 
@@ -20,8 +22,18 @@ public class AxisService {
 		
 	}
 	
+	public Axis getById(int axisId){
+		return axisMapper.getById(axisId);
+	}
 	public int getLastId(){
 		return axisMapper.getLastId();
+	}
+	public Axis getLastAxis(){
+		return axisMapper.getLastAxis();
+	}
+
+	public int updateAxis(Axis axis){
+		return axisMapper.updateAxis(axis);
 	}
 	
 	public int getLastStatus(){
