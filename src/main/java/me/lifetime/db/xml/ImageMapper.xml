@@ -11,6 +11,29 @@
 	</resultMap>
 
 	<insert id="insert" parameterType="Image">
-		insert into image(axis_id, name, description, path, create_time) values(#{axisId}, #{name}, #{description}, #{path}, #{createTime})
+		insert into image(axis_id,from_user_name, name, description, path, create_time) values(#{axisId},#{fromUserName}, #{name}, #{description}, #{path}, #{createTime})
 	</insert>
+	
+	<select id="getLastImage" resultMap="Image" parameterType="java.lang.String">
+		select * from image where from_user_name=#{0} order by image_id desc limit 1
+	</select>
+	
+	<update id="updateImageName" parameterType="java.lang.String">
+		update image set name=#{1} where from_user_name=#{0} order by image_id desc limit 1
+	</update>	
+		
+	<update id="updateImageDescription" parameterType="java.lang.String">
+		update image set description=#{1} where from_user_name=#{0} order by image_id desc limit 1
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			
 </mapper>

@@ -28,9 +28,6 @@ public class AxisService {
 	public Axis getById(int axisId){
 		return axisMapper.getById(axisId);
 	}
-	public int getLastId(){
-		return axisMapper.getLastId();
-	}
 	public Axis getLastAxis(String fromUserName){
 		return axisMapper.getLastAxis(fromUserName);
 	}

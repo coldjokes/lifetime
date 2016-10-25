@@ -8,8 +8,6 @@ public interface AxisMapper {
 
     Axis getById(int axisId);
     
-    int getLastId();
-    
     Axis getLastAxis(String fromUserName);
     
     int updateAxis(Axis axis);

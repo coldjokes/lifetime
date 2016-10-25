@@ -18,3 +18,7 @@
 
 链接、收藏
 {MsgId=6342459269627971654, Description=一、硬件准备（1）、树莓派Pi2（2）、8G 10速Micro SD卡（3）、LCD显示器（如果是VGA接口, FromUserName=ov8gGw4MYA5zFWJhPjv-yKhV4ACQ, Url=http://mp.weixin.qq.com/s?__biz=MzA3MzM3MzE2OQ==&mid=402385551&idx=1&sn=cac4a0360ba5c2e8cbb64397495cbbac&scene=24&srcid=0830xEETR3Nl85pnUrunBPgz#rd, CreateTime=1476718874, Title=树莓派Pi2安装Window10系统安装, ToUserName=gh_e1eb406a90ed, MsgType=link}
+
+wx0bc2b43e4a03efe7
+
+86037c313f093b33b504d584f5a6d706

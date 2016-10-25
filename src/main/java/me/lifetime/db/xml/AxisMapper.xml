@@ -44,10 +44,6 @@
 		select * from axis where axis_id = #{0}
 	</select>
 	
-	<select id="getLastId" resultType="int">
-		select axis_id from axis order by axis_id desc limit 1
-	</select>
-	
 	<select id="getLastAxis" resultMap="Axis" parameterType="java.lang.String">
 		select * from axis where from_user_name=#{0} order by axis_id desc limit 1
 	</select>
@@ -62,6 +58,6 @@
 	</update>
 	
 	<update id="updateLastStatus" parameterType="java.lang.String">
-		update axis set status = 0 from_user_name=#{0} order by axis_id desc limit 1
+		update axis set status = 0 where from_user_name=#{0} order by axis_id desc limit 1
 	</update>
 </mapper>

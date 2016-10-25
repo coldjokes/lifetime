@@ -8,6 +8,8 @@ public class Image {
 	
 	private int axisId;
 	
+	private String fromUserName;
+	
 	private String name;
 	
 	private String description;
@@ -16,9 +18,7 @@ public class Image {
 	
 	private Date createTime;
 
-	public Image(){
-		this.createTime = new Date();
-	};
+	public Image(){};
 	
 
 	public int getImageId() {
@@ -36,6 +36,15 @@ public class Image {
 	public void setAxisId(int axisId) {
 		this.axisId = axisId;
 	}
+
+	public String getFromUserName() {
+		return fromUserName;
+	}
+
+	public void setFromUserName(String fromUserName) {
+		this.fromUserName = fromUserName;
+	}
+
 
 	public String getName() {
 		return name;

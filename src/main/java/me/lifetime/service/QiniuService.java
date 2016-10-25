@@ -13,6 +13,12 @@ import com.qiniu.util.Auth;
 @Service
 public class QiniuService {
 
+	
+	public String getQiniuPath(String mediaId){
+		
+		return "www.baidu.com";
+	}
+	
 	//设置好账号的ACCESS_KEY和SECRET_KEY
 	  String ACCESS_KEY = "ivxwi6kBtkG63QA3WswMSpaGvmX947LsnSwTZcxF";
 	  String SECRET_KEY = "5KV9wOPQDllwMKiuxlThJNBTwfCPn3eug2VZttQK";
