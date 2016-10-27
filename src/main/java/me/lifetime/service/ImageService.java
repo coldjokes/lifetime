@@ -24,9 +24,9 @@ public class ImageService {
 		image.setAxisId(axisId);
 		
 		System.out.println(mediaId);
-		String path = qiniuSvc.getQiniuPath(mediaId);
+		String qiniuPath = qiniuSvc.getQiniuPath(mediaId);
 		
-		image.setPath(path);
+		image.setPathQiniu(qiniuPath);
 		
 		return imageMapper.insert(image);
 	}

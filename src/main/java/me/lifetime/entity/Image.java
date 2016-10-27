@@ -14,13 +14,12 @@ public class Image {
 	
 	private String description;
 	
-	private String path;
+	private String pathQiniu;
 	
 	private Date createTime;
 
 	public Image(){};
 	
-
 	public int getImageId() {
 		return imageId;
 	}
@@ -62,12 +61,12 @@ public class Image {
 		this.description = description;
 	}
 
-	public String getPath() {
-		return path;
+	public String getPathQiniu() {
+		return pathQiniu;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setPathQiniu(String pathQiniu) {
+		this.pathQiniu = pathQiniu;
 	}
 
 	public Date getCreateTime() {
