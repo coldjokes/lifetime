@@ -42,6 +42,5 @@ public class ImageService {
 	public int updateImageDescription(String fromUserName, String description) {
 		return imageMapper.updateImageDescription(fromUserName, description);
 	}
-	
-	
+
 }

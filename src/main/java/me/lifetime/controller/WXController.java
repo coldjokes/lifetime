@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import me.lifetime.common.AppConsts;
 import me.lifetime.service.WXService;
-import me.lifetime.service.wx.AccessTokenValidateProcess;
+import me.lifetime.service.wx.ConnectToken;
 import me.lifetime.service.wx.ReceiveXmlProcess;
+import me.lifetime.thread.TokenThread;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class WXController {
 	private static final Logger log = Logger.getLogger(WXController.class);
 	
 	@Autowired
-	private AccessTokenValidateProcess tokenValidatePorcess;
+	private ConnectToken connectToken;
 	@Autowired
 	private ReceiveXmlProcess receiveXmlProcess;
 	@Autowired
@@ -43,7 +44,7 @@ public class WXController {
 		String timestamp = req.getParameter("timestamp");
 		String nonce = req.getParameter("nonce");
 		String echostr = req.getParameter("echostr");
-		if (tokenValidatePorcess.checkToken(signature, timestamp, nonce)) {
+		if (connectToken.checkToken(signature, timestamp, nonce)) {
 			return echostr;
 		}else{
 			log.error("Access token validate failure!");
@@ -74,6 +75,7 @@ public class WXController {
 		//微信端发来的信息
         String xml = sb.toString();  
 		
+        System.out.println(TokenThread.accessToken.getAccessToken());
 		return wxSvc.handleMsg(receiveXmlProcess.getMsgEntity(xml));
 	}
 

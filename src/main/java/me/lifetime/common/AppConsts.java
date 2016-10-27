@@ -38,8 +38,10 @@ public class AppConsts {
 	public static final String MSG_SUCCESS_SUBSCRIBE_AG			= Messages.get("message.success.subscribe.ag");
 	
 	
+	public static final String EXP_SYSTEM						= Messages.get("exception.system");
 	public static final String EXP_XML_DATA						= Messages.get("exception.xml.data");
 	public static final String EXP_XML_PARSE					= Messages.get("exception.xml.parse");
+	public static final String EXP_ACCESS_TOEKN_GET				= Messages.get("exception.access.token.get");
 }
 
 
