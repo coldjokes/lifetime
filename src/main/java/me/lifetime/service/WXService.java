@@ -2,15 +2,13 @@ package me.lifetime.service;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.Map;
 
 import me.lifetime.common.AppConsts;
 import me.lifetime.entity.Axis;
 import me.lifetime.entity.User;
-import me.lifetime.util.MessageUtil;
-import me.lifetime.util.SHA1;
+import me.lifetime.entity.wx.ReceiveXmlEntity;
+import me.lifetime.service.wx.FormatXmlProcess;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -30,23 +28,26 @@ public class WXService {
 	private EventService eventSvc;
 	@Autowired
 	private ImageService imageSvc;
+	
+	@Autowired
+	private FormatXmlProcess formatXmlProcess;
 	/**
 	 * chat 用户消息交互
 	 * @param map
 	 * @return
 	 */
-	public String handleMsg(Map<String, String> map){
-		String msgType = map.get(AppConsts.KEY_MSG_TYPE);
+	public String handleMsg(ReceiveXmlEntity wxEntity){
 		
-		String toUserName = map.get(AppConsts.KEY_TO_USER_NAME);
-		String fromUserName = map.get(AppConsts.KEY_FROM_USER_NAME);
-		String content = map.get(AppConsts.KEY_CONTENT);
-		String eventType = map.get(AppConsts.KEY_EVENT);
-		String mediaId = map.get(AppConsts.KEY_MEDIA_ID);
-		String label = map.get(AppConsts.KEY_LABEL);
-		String scale = map.get(AppConsts.KEY_SCALE);
-		String locationX = map.get(AppConsts.KEY_LOCATION_X);
-		String locationY = map.get(AppConsts.KEY_LOCATION_Y);
+		String msgType = wxEntity.getMsgType();
+		String toUserName = wxEntity.getToUserName();
+		String fromUserName = wxEntity.getFromUserName();
+		String content = wxEntity.getContent();
+		String eventType = wxEntity.getEvent();
+		String mediaId = wxEntity.getMediaId();
+		String label = wxEntity.getLabel();
+		String scale = wxEntity.getScale();
+		String locationX = wxEntity.getLocation_X();
+		String locationY = wxEntity.getLocation_Y();
 		
 		String returnMsg = null;
 
@@ -153,31 +154,8 @@ public class WXService {
 			}
 		}
 		
-		return MessageUtil.initText(toUserName, fromUserName, returnMsg);
-	}
-	
-	
-	
-	/**
-	 * 验证token
-	 * @param signature
-	 * @param timestamp
-	 * @param nonce
-	 * @return
-	 */
-	public boolean checkToken(String signature, String timestamp, String nonce) {
-		String arr[] = new String[]{AppConsts.WX_TOKEN,timestamp,nonce};
-		//排序
-		Arrays.sort(arr);
+		return formatXmlProcess.formatXmlAnswer(fromUserName, toUserName, returnMsg);
 		
-		//生成字符串
-		StringBuffer content = new StringBuffer();
-		for(String s:arr){
-			content.append(s);
-		}
-		//sha1加密
-		String temp = SHA1.hex_sha1(content.toString());
-		return temp.equals(signature);
 	}
 	
 }

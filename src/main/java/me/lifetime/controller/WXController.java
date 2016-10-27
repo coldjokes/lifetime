@@ -1,15 +1,18 @@
 package me.lifetime.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Map;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import javax.servlet.http.HttpServletRequest;
 
+import me.lifetime.common.AppConsts;
 import me.lifetime.service.WXService;
-import me.lifetime.util.MessageUtil;
+import me.lifetime.service.wx.AccessTokenValidateProcess;
+import me.lifetime.service.wx.ReceiveXmlProcess;
 
 import org.apache.log4j.Logger;
-import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,27 +21,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class WXController {
-
 	
 	private static final Logger log = Logger.getLogger(WXController.class);
 	
 	@Autowired
+	private AccessTokenValidateProcess tokenValidatePorcess;
+	@Autowired
+	private ReceiveXmlProcess receiveXmlProcess;
+	@Autowired
 	private WXService wxSvc;
-
 	
-	@RequestMapping(value="/wx",method = {RequestMethod.POST})
-	@ResponseBody
-	public String clientMsg(HttpServletRequest req){
-		Map<String, String> map = null;
-		try {
-			map = MessageUtil.xmlToMap(req);
-		} catch (IOException | DocumentException e) {
-			log.error("Failed to get client message", e);
-		}
-		
-		return wxSvc.handleMsg(map);
-	}
-	
+	/**
+	 * 验证access token
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value="/wx",method = {RequestMethod.GET})
 	@ResponseBody
 	public String accessToken(HttpServletRequest req){
@@ -46,12 +43,38 @@ public class WXController {
 		String timestamp = req.getParameter("timestamp");
 		String nonce = req.getParameter("nonce");
 		String echostr = req.getParameter("echostr");
-		if (wxSvc.checkToken(signature, timestamp, nonce)) {
+		if (tokenValidatePorcess.checkToken(signature, timestamp, nonce)) {
 			return echostr;
 		}else{
 			log.error("Access token validate failure!");
 		}
 		return "";
+	}
+	
+	/**
+	 * 处理微信消息
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value="/wx",method = {RequestMethod.POST})
+	@ResponseBody
+	public String clientMsg(HttpServletRequest req){
+        StringBuffer sb = new StringBuffer();  
+		try {
+			InputStream is = req.getInputStream();
+	        InputStreamReader isr = new InputStreamReader(is, "UTF-8");  
+	        BufferedReader br = new BufferedReader(isr);  
+	        String s = "";  
+	        while ((s = br.readLine()) != null) {  
+	            sb.append(s);  
+	        }  
+		} catch (IOException e) {
+			log.error(AppConsts.EXP_XML_DATA, e);
+		}  
+		//微信端发来的信息
+        String xml = sb.toString();  
+		
+		return wxSvc.handleMsg(receiveXmlProcess.getMsgEntity(xml));
 	}
 
 }

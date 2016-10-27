@@ -1,4 +1,4 @@
-package me.lifetime.entity;
+package me.lifetime.entity.wx;
 
 public class TextMessage {
 	
@@ -8,6 +8,7 @@ public class TextMessage {
 	private String MsgType;
 	private String Content;
 	private String MsgId;
+	
 	public String getToUserName() {
 		return ToUserName;
 	}
