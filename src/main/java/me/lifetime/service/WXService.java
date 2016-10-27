@@ -121,7 +121,7 @@ public class WXService {
 						
 						returnMsg = AppConsts.MSG_SUCCESS_IMAGE_DESCRIPTION;
 					} else{
-						eventSvc.insert(axisId, content);
+						eventSvc.insert(axisId, fromUserName, content);
 						returnMsg = AppConsts.MSG_SUCCESS_TEXT;
 					}
 				}

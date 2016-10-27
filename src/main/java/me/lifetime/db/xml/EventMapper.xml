@@ -4,11 +4,12 @@
 	<resultMap id="Event" type="me.lifetime.entity.Event">
 		<id column="event_id" property="eventId" jdbcType="INTEGER" />
 		<result column="axis_id" property="axisId" jdbcType="INTEGER" />
+		<result column="from_user_name" property="fromUserName" jdbcType="VARCHAR" />
 		<result column="text" property="text" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 
 	<insert id="insert" parameterType="Event">
-		insert into event(axis_id, text, create_time) values(#{axisId}, #{text}, #{createTime})
+		insert into event(axis_id, from_user_name, text, create_time) values(#{axisId}, #{fromUserName}, #{text}, #{createTime})
 	</insert>
 </mapper>

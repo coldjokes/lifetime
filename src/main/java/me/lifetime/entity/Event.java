@@ -8,17 +8,13 @@ public class Event {
 	
 	private int axisId;
 	
+	private String fromUserName;
+	
 	private String text;
 	
 	private Date createTime;
 
 	public Event(){};
-	
-	public Event(int axisId, String text){
-		this.axisId = axisId;
-		this.text = text;
-		this.createTime = new Date();
-	}
 	
 	public int getEventId() {
 		return eventId;
@@ -34,6 +30,14 @@ public class Event {
 
 	public void setAxisId(int axisId) {
 		this.axisId = axisId;
+	}
+
+	public String getFromUserName() {
+		return fromUserName;
+	}
+
+	public void setFromUserName(String fromUserName) {
+		this.fromUserName = fromUserName;
 	}
 
 	public String getText() {
