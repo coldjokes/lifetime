@@ -4,8 +4,6 @@ public class AppConsts {
 
 	//wx common
 	public static final String WX_TOKEN 						= "thisisatoken";
-	public static final String WX_APP_ID						= "wx483d69b2f28b3923";//测试号
-	public static final String WX_APP_SECRET					= "202ad731a108ffbc95b45cad6ed57d0a";
 	
 	//wx message type
 	public static final String MESSAGE_TYPE_TEXT				= "text";
@@ -49,6 +47,8 @@ public class AppConsts {
 	public static final String PROP_QINIU_ACCESS_KEY			= Config.get("qiniu.access.key");
 	public static final String PROP_QINIU_SECRET_KEY			= Config.get("qiniu.secret.key");
 
+	//七牛
+	public static final String QINIU_BUCKET_NAME				= "lifetime";
 }
 
 

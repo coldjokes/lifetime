@@ -16,7 +16,7 @@ import com.qiniu.util.Auth;
 public class QiniuService {
 
 	
-	public String getQiniuPath(String mediaId){
+	public String getQiniuPath(String mediaId, String tempPath, String fileName){
 		
 		return "www.baidu.com";
 	}
@@ -25,7 +25,7 @@ public class QiniuService {
 	  String ACCESS_KEY = AppConsts.PROP_QINIU_ACCESS_KEY;
 	  String SECRET_KEY = AppConsts.PROP_QINIU_SECRET_KEY;
 	  //要上传的空间
-	  String bucketname = "test";
+	  String bucketname = AppConsts.QINIU_BUCKET_NAME;
 	  //上传到七牛后保存的文件名
 	  String key = "my-java.png";
 	  //上传文件的路径

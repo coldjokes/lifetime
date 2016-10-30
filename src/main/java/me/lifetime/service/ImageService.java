@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import me.lifetime.db.mapper.ImageMapper;
@@ -29,10 +30,19 @@ public class ImageService {
 		image.setFromUserName(fromUserName);
 		image.setMediaId(mediaId);
 		image.setPathWX(picUrl);
-		image.setCreateTime(new Date());
+		
+		Date current = new Date();
 
+		
+		image.setCreateTime(current);
+
+		String name = new SimpleDateFormat("yyyyMMddHHmmss").format(current);
+		
 		System.out.println("mediaId===" + mediaId);
+		System.out.println("mediaId===" + name);
 
+		
+		saveFileFromWX(mediaId);
 		try {
 			saveImageToDisk(mediaId);
 		} catch (Exception e) {
@@ -40,8 +50,8 @@ public class ImageService {
 		}
 		
 		
-		String qiniuPath = qiniuSvc.getQiniuPath(mediaId);
-		image.setPathQiniu(qiniuPath);
+//		String qiniuPath = qiniuSvc.getQiniuPath(mediaId, file, name);
+//		image.setPathQiniu(qiniuPath);
 
 		return imageMapper.insert(image);
 	}
@@ -58,7 +68,7 @@ public class ImageService {
 		return imageMapper.updateImageDescription(fromUserName, description);
 	}
 
-	public File downloadImage(String mediaId) {
+	public File saveFileFromWX(String mediaId) {
 
 		return new File("");
 	}
