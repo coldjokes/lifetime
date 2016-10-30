@@ -52,8 +52,7 @@ public class ReceiveXmlProcess {
 				// 获取set方法中的参数字段（实体类的属性）
 				Field field = c.getDeclaredField(ele.getName());
 				// 获取set方法，field.getType()获取它的参数数据类型
-				Method method = c.getDeclaredMethod("set" + ele.getName(),
-						field.getType());
+				Method method = c.getDeclaredMethod("set" + ele.getName(), field.getType());
 				// 调用ser方法
 				method.invoke(msg, ele.getText());
 			}

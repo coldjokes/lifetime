@@ -10,11 +10,16 @@ public class Image {
 	
 	private String fromUserName;
 	
+	private String mediaId;
+	
 	private String name;
 	
 	private String description;
 	
 	private String pathQiniu;
+	
+	private String pathWX;
+	
 	
 	private Date createTime;
 
@@ -44,6 +49,13 @@ public class Image {
 		this.fromUserName = fromUserName;
 	}
 
+	public String getMediaId() {
+		return mediaId;
+	}
+
+	public void setMediaId(String mediaId) {
+		this.mediaId = mediaId;
+	}
 
 	public String getName() {
 		return name;
@@ -67,6 +79,14 @@ public class Image {
 
 	public void setPathQiniu(String pathQiniu) {
 		this.pathQiniu = pathQiniu;
+	}
+	
+	public String getPathWX() {
+		return pathWX;
+	}
+
+	public void setPathWX(String pathWX) {
+		this.pathWX = pathWX;
 	}
 
 	public Date getCreateTime() {

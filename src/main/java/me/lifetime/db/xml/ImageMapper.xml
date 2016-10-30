@@ -5,13 +5,33 @@
 		<id column="image_id" property="photoId" jdbcType="INTEGER" />
 		<result column="axis_id" property="axisId" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="media_id" property="mediaId" jdbcType="VARCHAR" />
 		<result column="description" property="description" jdbcType="VARCHAR" />
 		<result column="path_qiniu" property="pathQiniu" jdbcType="VARCHAR" />
+		<result column="path_wx" property="pathWX" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 
 	<insert id="insert" parameterType="Image">
-		insert into image(axis_id,from_user_name, name, description, path_qiniu, create_time) values(#{axisId},#{fromUserName}, #{name}, #{description}, #{pathQiniu}, #{createTime})
+		insert into image(
+			axis_id
+			,from_user_name
+			,name
+			,media_id
+			,description
+			,path_qiniu
+			,path_wx
+			,create_time
+		) values(
+			#{axisId}
+			,#{fromUserName}
+			,#{name}
+			,#{mediaId}
+			,#{description}
+			,#{pathQiniu}
+			,#{pathWX}
+			,#{createTime}
+		)
 	</insert>
 	
 	<select id="getLastImage" resultMap="Image" parameterType="java.lang.String">

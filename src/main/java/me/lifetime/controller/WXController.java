@@ -75,7 +75,6 @@ public class WXController {
 		//微信端发来的信息
         String xml = sb.toString();  
 		
-        System.out.println(TokenThread.accessToken.getAccessToken());
 		return wxSvc.handleMsg(receiveXmlProcess.getMsgEntity(xml));
 	}
 

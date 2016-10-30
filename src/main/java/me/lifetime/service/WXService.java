@@ -44,6 +44,7 @@ public class WXService {
 		String content = wxEntity.getContent();
 		String eventType = wxEntity.getEvent();
 		String mediaId = wxEntity.getMediaId();
+		String picUrl = wxEntity.getPicUrl();
 		String label = wxEntity.getLabel();
 		String scale = wxEntity.getScale();
 		String locationX = wxEntity.getLocation_X();
@@ -127,7 +128,7 @@ public class WXService {
 					}
 				}
 			}else if(AppConsts.MESSAGE_TYPE_IMAGE.equals(msgType)){
-				imageSvc.insert(axisId,fromUserName, mediaId);
+				imageSvc.insert(axisId, fromUserName, mediaId, picUrl);
 
 				StringBuffer sb = new StringBuffer();
 				
