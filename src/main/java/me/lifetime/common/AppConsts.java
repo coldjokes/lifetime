@@ -4,8 +4,8 @@ public class AppConsts {
 
 	//wx common
 	public static final String WX_TOKEN 						= "thisisatoken";
-	public static final String WX_APP_ID						= "wx0bc2b43e4a03efe7";
-	public static final String WX_APP_SECRET					= "86037c313f093b33b504d584f5a6d706";
+	public static final String WX_APP_ID						= "wx483d69b2f28b3923";//测试号
+	public static final String WX_APP_SECRET					= "202ad731a108ffbc95b45cad6ed57d0a";
 	
 	//wx message type
 	public static final String MESSAGE_TYPE_TEXT				= "text";
@@ -21,8 +21,7 @@ public class AppConsts {
 	public static final String MESSAGE_CLICK					= "CLICK";
 	public static final String MESSAGE_VIEW						= "VIEW";
 	
-	
-	
+	//微信返回信息messages.properties
 	public static final String MSG_NO_RECORD	 				= Messages.get("message.no.record");
 	public static final String MSG_SUCCESS	 					= Messages.get("message.success");
 	public static final String MSG_SUCCESS_TEXT	 				= Messages.get("message.success.text");
@@ -37,11 +36,19 @@ public class AppConsts {
 	public static final String MSG_SUCCESS_SUBSCRIBE 			= Messages.get("message.success.subscribe");
 	public static final String MSG_SUCCESS_SUBSCRIBE_AG			= Messages.get("message.success.subscribe.ag");
 	
-	
+	//出现错误或异常返回信息 message.properties
 	public static final String EXP_SYSTEM						= Messages.get("exception.system");
 	public static final String EXP_XML_DATA						= Messages.get("exception.xml.data");
 	public static final String EXP_XML_PARSE					= Messages.get("exception.xml.parse");
 	public static final String EXP_ACCESS_TOEKN_GET				= Messages.get("exception.access.token.get");
+	
+	
+	//主要配置文件信息 lifetime.properties
+	public static final String PROP_WX_APP_ID	 				= Config.get("wx.app.id");
+	public static final String PROP_WX_SECRET_ID 				= Config.get("wx.app.secret");
+	public static final String PROP_QINIU_ACCESS_KEY			= Config.get("qiniu.access.key");
+	public static final String PROP_QINIU_SECRET_KEY			= Config.get("qiniu.secret.key");
+
 }
 
 

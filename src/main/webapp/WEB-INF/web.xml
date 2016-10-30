@@ -61,11 +61,11 @@
 	    <servlet-class>me.lifetime.servlet.AccessTokenServlet</servlet-class>
 	    <init-param>
 	      	<param-name>appid</param-name>
-	      	<param-value>wx0bc2b43e4a03efe7</param-value>
+	      	<param-value>wx483d69b2f28b3923</param-value>
 	    </init-param>
 		<init-param>
 			<param-name>appsecret</param-name>
-			<param-value>86037c313f093b33b504d584f5a6d706</param-value>
+			<param-value>202ad731a108ffbc95b45cad6ed57d0a</param-value>
 	    </init-param>
 		<load-on-startup>0</load-on-startup>
 	</servlet>

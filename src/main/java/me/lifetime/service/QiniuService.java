@@ -2,6 +2,8 @@ package me.lifetime.service;
 
 import java.io.IOException;
 
+import me.lifetime.common.AppConsts;
+
 import org.springframework.stereotype.Service;
 
 import com.qiniu.common.QiniuException;
@@ -20,8 +22,8 @@ public class QiniuService {
 	}
 	
 	//设置好账号的ACCESS_KEY和SECRET_KEY
-	  String ACCESS_KEY = "ivxwi6kBtkG63QA3WswMSpaGvmX947LsnSwTZcxF";
-	  String SECRET_KEY = "5KV9wOPQDllwMKiuxlThJNBTwfCPn3eug2VZttQK";
+	  String ACCESS_KEY = AppConsts.PROP_QINIU_ACCESS_KEY;
+	  String SECRET_KEY = AppConsts.PROP_QINIU_SECRET_KEY;
 	  //要上传的空间
 	  String bucketname = "test";
 	  //上传到七牛后保存的文件名
