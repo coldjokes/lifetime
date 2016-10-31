@@ -39,6 +39,7 @@ DROP TABLE IF EXISTS `event`;
 CREATE TABLE `event` (
   `event_id` int(9) NOT NULL AUTO_INCREMENT,
   `axis_id` int(9) NOT NULL,
+  `from_user_name` varchar(255) DEFAULT NULL, 
   `text` varchar(4000) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`event_id`),
@@ -53,9 +54,13 @@ DROP TABLE IF EXISTS `image`;
 CREATE TABLE `image` (
   `image_id` int(9) NOT NULL AUTO_INCREMENT,
   `axis_id` int(9) NOT NULL,
-  `name` varchar(4000) DEFAULT NULL COMMENT '照片名',
+  `from_user_name` varchar(255) DEFAULT NULL, 
+  `media_id` varchar(255) DEFAULT NULL, 
+  `name` varchar(1000) DEFAULT NULL COMMENT '照片名',
   `description` varchar(4000) DEFAULT NULL COMMENT '照片描述',
-  `path` varchar(4000) DEFAULT NULL COMMENT '存放路径',
+  `path_qiniu` varchar(1000) DEFAULT NULL COMMENT '七牛路径',
+  `path_disk` varchar(1000) DEFAULT NULL COMMENT '磁盘路径',
+  `path_wx` varchar(1000) DEFAULT NULL COMMENT '微信路径',
   `create_time` timestamp NULL DEFAULT NULL COMMENT '上传时间',
   PRIMARY KEY (`image_id`),
   KEY `axis_photo` (`axis_id`) USING BTREE,

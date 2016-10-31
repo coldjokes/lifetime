@@ -1,7 +1,5 @@
 package me.lifetime.service;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import me.lifetime.common.AppConsts;

@@ -28,7 +28,8 @@ public class QiniuService {
 	public void upload(String pathDisk) {
 		try {
 			// 上传到七牛后保存的文件名
-			String key = pathDisk.substring(pathDisk.lastIndexOf("\\") + 1);
+//			String key = pathDisk.substring(pathDisk.lastIndexOf("\\") + 1);
+			String key = pathDisk.substring(pathDisk.lastIndexOf("/") + 1);
 
 			// 调用put方法上传
 			Response res = uploadManager.put(pathDisk, key, getUpToken());
