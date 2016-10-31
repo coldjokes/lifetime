@@ -18,6 +18,8 @@ public class Image {
 	
 	private String pathQiniu;
 	
+	private String pathDisk;
+	
 	private String pathWX;
 	
 	
@@ -81,6 +83,14 @@ public class Image {
 		this.pathQiniu = pathQiniu;
 	}
 	
+	public String getPathDisk() {
+		return pathDisk;
+	}
+
+	public void setPathDisk(String pathDisk) {
+		this.pathDisk = pathDisk;
+	}
+
 	public String getPathWX() {
 		return pathWX;
 	}

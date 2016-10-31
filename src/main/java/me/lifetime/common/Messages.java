@@ -24,7 +24,7 @@ public class Messages {
 			 Resource res = new ClassPathResource("message.properties");   
 			 //指定文件资源对应的编码格式（UTF-8）  
 			 EncodedResource encRes = new EncodedResource(res,"UTF-8"); 
-			 prop =PropertiesLoaderUtils.loadProperties(encRes);
+			 prop = PropertiesLoaderUtils.loadProperties(encRes);
 		 } catch (IOException e) {  
 			 log.error("Read message.properties failed", e);
 		 }  

@@ -8,6 +8,7 @@
 		<result column="media_id" property="mediaId" jdbcType="VARCHAR" />
 		<result column="description" property="description" jdbcType="VARCHAR" />
 		<result column="path_qiniu" property="pathQiniu" jdbcType="VARCHAR" />
+		<result column="path_disk" property="pathDisk" jdbcType="VARCHAR" />
 		<result column="path_wx" property="pathWX" jdbcType="VARCHAR" />
 		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
 	</resultMap>
@@ -20,6 +21,7 @@
 			,media_id
 			,description
 			,path_qiniu
+			,path_disk
 			,path_wx
 			,create_time
 		) values(
@@ -29,6 +31,7 @@
 			,#{mediaId}
 			,#{description}
 			,#{pathQiniu}
+			,#{pathDisk}
 			,#{pathWX}
 			,#{createTime}
 		)

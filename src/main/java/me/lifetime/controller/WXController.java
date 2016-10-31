@@ -8,10 +8,9 @@ import java.io.InputStreamReader;
 import javax.servlet.http.HttpServletRequest;
 
 import me.lifetime.common.AppConsts;
-import me.lifetime.service.WXService;
 import me.lifetime.service.wx.ConnectToken;
 import me.lifetime.service.wx.ReceiveXmlProcess;
-import me.lifetime.thread.TokenThread;
+import me.lifetime.service.wx.WXMessageService;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class WXController {
 	@Autowired
 	private ReceiveXmlProcess receiveXmlProcess;
 	@Autowired
-	private WXService wxSvc;
+	private WXMessageService wxMsgSvc;
 	
 	/**
 	 * 验证access token
@@ -75,7 +74,7 @@ public class WXController {
 		//微信端发来的信息
         String xml = sb.toString();  
 		
-		return wxSvc.handleMsg(receiveXmlProcess.getMsgEntity(xml));
+		return wxMsgSvc.handleMsg(receiveXmlProcess.getMsgEntity(xml));
 	}
 
 }

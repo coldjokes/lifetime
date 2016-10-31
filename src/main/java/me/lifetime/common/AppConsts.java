@@ -4,6 +4,8 @@ public class AppConsts {
 
 	//wx common
 	public static final String WX_TOKEN 						= "thisisatoken";
+	//磁盘路径
+	public static final String IMAGE_SAVE_PATH					= "D:\\lifetime\\images\\";
 	
 	//wx message type
 	public static final String MESSAGE_TYPE_TEXT				= "text";
@@ -48,7 +50,10 @@ public class AppConsts {
 	public static final String PROP_QINIU_SECRET_KEY			= Config.get("qiniu.secret.key");
 
 	//七牛
+	public static final String QINIU_URL						= "http://ofk6e08bd.bkt.clouddn.com/";
 	public static final String QINIU_BUCKET_NAME				= "lifetime";
+	
+
 }
 
 
