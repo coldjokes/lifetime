@@ -25,14 +25,13 @@ public class QiniuService {
 	// 创建上传对象
 	UploadManager uploadManager = new UploadManager();
 
-	public void upload(String pathDisk) {
+	public void upload(String pathDisk, String fullName) {
 		try {
 			// 上传到七牛后保存的文件名
-//			String key = pathDisk.substring(pathDisk.lastIndexOf("\\") + 1);
-			String key = pathDisk.substring(pathDisk.lastIndexOf("/") + 1);
-
+			//fullName
+				
 			// 调用put方法上传
-			Response res = uploadManager.put(pathDisk, key, getUpToken());
+			Response res = uploadManager.put(pathDisk, fullName, getUpToken());
 			// 打印返回的信息
 			System.out.println(res.bodyString());
 		} catch (QiniuException e) {

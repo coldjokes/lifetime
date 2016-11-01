@@ -5,8 +5,8 @@ public class AppConsts {
 	//wx common
 	public static final String WX_TOKEN 						= "thisisatoken";
 	//磁盘路径
-//	public static final String IMAGE_SAVE_PATH					= "D:\\lifetime\\images\\";
-	public static final String IMAGE_SAVE_PATH					= "/home/pi/if/lifetime/images/";
+	public static final String IMAGE_SAVE_PATH					= "D:\\lifetime\\images\\";
+//	public static final String IMAGE_SAVE_PATH					= "/home/pi/if/lifetime/images/";
 	
 	//wx message type
 	public static final String MESSAGE_TYPE_TEXT				= "text";

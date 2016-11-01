@@ -40,7 +40,7 @@ public class ImageService {
 			e.printStackTrace();
 		}
 		
-		qiniuSvc.upload(pathDisk);
+		qiniuSvc.upload(pathDisk, fullName);
 
 		image.setPathQiniu(pathQiniu);
 		image.setPathDisk(pathDisk);
