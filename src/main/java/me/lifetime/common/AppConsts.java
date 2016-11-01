@@ -4,9 +4,10 @@ public class AppConsts {
 
 	//wx common
 	public static final String WX_TOKEN 						= "thisisatoken";
-	//磁盘路径
-	public static final String IMAGE_SAVE_PATH					= "D:\\lifetime\\images\\";
-//	public static final String IMAGE_SAVE_PATH					= "/home/pi/if/lifetime/images/";
+	
+	public static final String RUN_ENV							= "RUN_ENV";
+	public static final String RUN_ENV_DEV						= "dev";
+	public static final String RUN_ENV_PRODUCTION				= "production";
 	
 	//wx message type
 	public static final String MESSAGE_TYPE_TEXT				= "text";
@@ -50,6 +51,9 @@ public class AppConsts {
 	public static final String PROP_QINIU_ACCESS_KEY			= Config.get("qiniu.access.key");
 	public static final String PROP_QINIU_SECRET_KEY			= Config.get("qiniu.secret.key");
 
+	//本地照片存放路径
+	public static final String IMAGE_SAVE_PATH					= Config.get("profile.image.save.path");
+	
 	//七牛
 	public static final String QINIU_URL						= "http://ofk6e08bd.bkt.clouddn.com/";
 	public static final String QINIU_BUCKET_NAME				= "lifetime";
