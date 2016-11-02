@@ -34,7 +34,6 @@
 	</properties>
 
 	<dependencies>
-
 		<!-- junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -302,6 +301,14 @@
 		    <artifactId>gson</artifactId>
 		    <version>2.3.1</version>
 		</dependency>
+		
+		<!-- sitemesh -->
+		<dependency>
+			<groupId>org.sitemesh</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		
 		<!-- 其他 -->
 		<dependency>
 			<groupId>dom4j</groupId>

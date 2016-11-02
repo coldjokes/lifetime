@@ -13,6 +13,7 @@
 
 	<!-- 使Spring支持自动检测组件，如注解的Controller -->
 	<context:component-scan base-package="me.lifetime.controller" />
+	<context:component-scan base-package="me.web.controller" />
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
